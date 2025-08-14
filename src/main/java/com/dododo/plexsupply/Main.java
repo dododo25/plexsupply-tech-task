@@ -41,6 +41,8 @@ public class Main {
             AtomicLong lineIndex = new AtomicLong();
             lines.forEach(line -> inputDeque.add(new Input(line, lineIndex.getAndIncrement())));
         }
+
+        System.out.println("All lines from the input file were read.");
     }
 
     private static void initThreads(Deque<Input> inputDeque, int nThreads, Thread mainThread) {
@@ -84,6 +86,10 @@ public class Main {
 
                         outputMap.remove(entry.getKey());
                         lastIndex++;
+
+                        if (lastIndex % 10000 == 0) {
+                            System.out.println("10000 new lines were processed.");
+                        }
                     }
                 }
             }
